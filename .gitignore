@@ -1,0 +1,7 @@
+.env
+test.py
+pyvenv.cfg
+lib/
+include
+bin
+__pycache__

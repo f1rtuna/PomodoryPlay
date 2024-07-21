@@ -1,4 +1,4 @@
 # PomodoryPlay
 
 ## Schematic
-![pomodoroPlaySchematic](https://github.com/user-attachments/assets/1a31c966-ec03-4bd0-b422-9544910ed32a)
+![pomodoroPlaySchematic](https://github.com/user-attachments/assets/8809bafd-97a9-4638-80ad-306a1f3f730f)

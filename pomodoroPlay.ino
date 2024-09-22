@@ -1,9 +1,9 @@
 #include <Adafruit_SSD1306.h>
 
-#define SCREEN_WIDTH 128  // OLED display width, in pixels
-#define SCREEN_HEIGHT 64  // OLED display height, in pixels
-#define OLED_RESET    -1   // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SSD1306_I2C_ADDRESS 0x3C  // I2C address for SSD1306 display
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET    -1 
+#define SSD1306_I2C_ADDRESS 0x3C
 #define BUZZPIN 2
 #define BUZZDELAY 200
 #define PLAYPIN 8
@@ -11,7 +11,7 @@
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-unsigned long endTime = 0;  // End time for the countdown (in milliseconds)
+unsigned long endTime = 0;
 String input;
 
 void setup() {
@@ -34,12 +34,10 @@ void setup() {
 
   // Set the initial endTime to 30 minutes from the current time
   unsigned long currentTime = millis();
-  // endTime = currentTime + 1800000;  // 30 minutes = 30 * 60 * 1000 milliseconds
-  endTime =  currentTime + 15000;
+  endTime = currentTime + 1800000;  // 30 minutes = 30 * 60 * 1000 milliseconds
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   unsigned long currentTime = millis();
   unsigned long elapsedTime = (endTime > currentTime) ? (endTime - currentTime) : 0;
 
@@ -48,7 +46,6 @@ void loop() {
 
   display.clearDisplay();
 
-  // Calculate the position to center the text
   int16_t x1, y1;
   uint16_t w, h;
 
@@ -64,24 +61,23 @@ void loop() {
     playBuzz();
     // Wait for the button to be pressed
     while (digitalRead(PLAYPIN) == HIGH) {
-      delay(50); // Small delay to avoid flooding the CPU
+      delay(50);
     }
     // sending over 1 to python
     Serial.println(true);
 
     // Loop until a serial message/object is received from Python
     while (Serial.available() == 0) {
-      delay(50); // Small delay to avoid flooding the CPU
+      delay(50);
     }
     input = Serial.readString();
     // recive one back from python indicating that video has been played
     if (input == "1"){
-      // endTime = currentTime + 1800000;  // Set the end time to 30 minutes from now
       while (digitalRead(RESTARTPIN) == HIGH){
         delay(50);
       }
       currentTime = millis();
-      endTime = currentTime + 15000;  // Set the end time to 30 minutes from now
+      endTime = currentTime + 1800000;  // Set the end time to 30 minutes from now
     }
   }
 

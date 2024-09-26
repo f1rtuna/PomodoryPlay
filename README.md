@@ -1,4 +1,6 @@
 # PomodoryPlay
+## The Pomorodo Timer that plays youtube videos on your break intervals
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/NcsmPQeDj7A/0.jpg)](https://www.youtube.com/watch?v=NcsmPQeDj7A)
 
 ## Schematic
